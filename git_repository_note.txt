@@ -1,0 +1,108 @@
+The graphical user interface for Gautier RSS originated in October 2012 from research I conducted into Allegro.
+
+A description of that work is found on wordpress.com in an article titled, "Creating a Cross-Platform C++ Program by Michael Gautier"
+
+I looked into various GUI toolkits including wxWidgets, GTK, and SFML. Articles on those topics are also on wordpress under my name in the years 2013 - 2015.
+------------------------------
+The first production GUI for the RSS reader was built using FLTK. That project is tracked in git:
+
+	Repository:	RSS-Reader
+	First Commit:	440264e274a8269bca5de6de57c81a61478d55da	10/2015
+
+You will find the earlier projects under the following repositories:
+
+	Repository:	App-Framework-Base-Allegro5
+	First Commit:	a60d524e11ce4e8fa0522dc2fdc1e71595f6cd6b	7/2013
+
+	Repository:	Capture and Draw
+	First Commit:	959aa8807ee4c516ac0c8b9ed834eb6058f7b9df	4/2015
+
+	Repository:	code expo
+	First Commit:	3c0295d607bd41f17efa3b631930168ba225cb1b	4/2015
+
+	Repository:	Native-Interactive-Application-Blueprint-FLTK-Support
+	First Commit:	0b2048b53c544a1eb7cf7ebec30120887eb87292	7/2015
+------------------------------
+The versions of RSS Reader are as follows:
+
+	Version 1		Year (2015)	User Interface: FLTK
+	Repository:		RSS-Reader	
+	First Commit: 		440264e274a8269bca5de6de57c81a61478d55da (10/2015)
+	Final Commit: 		5b6fc150b35a3a74ef42f1ef75d2a61b11869d2c (10/2015)
+
+	Version 1.5		Year (2015)	User Interface: FLTK
+	Repository:		gautier_rss_feed_engine
+	First Commit:		d813ea280e076886f1975a9bcd926df50f81a778 (09/2015)
+	Final Commit:		e6fb6b510cdc3905bb157f3f0a5853d8be1b1f41 (09/2015)
+
+	Version 2		Year (2016)	User Interface: FLTK
+	Repository:		gautier_rss_reader2
+	First Commit:		831c4d841cb8aa3c6e5e14f847e3eeb5f2f6e879 (12/2016)
+	Final Commit:		fd6d79b32dd91ff4c2a4aa3023660f7d02d99684 (01/2018)
+
+	Version 3		Year (2017)	User Interface: FLTK
+	Repository:		gautier_system
+	First Commit:		ada4686bf675f6d714a559086f2ea7ac59803b0c (11/2017)
+	Final Commit:		bd37aacec83bee54fcb4615a33d57419a2c589f3 (01/2018)
+
+	Version 4		Year (2018)	User Interface: Allegro
+	Repository:		gautier_system
+	First Commit:		bfa59682d3b0a7d8fc764d71be464f93a36229c0 (01/2018)
+	Final Commit:		e90d617d7f78cce3185c574d608ba0bf5432e9d8 (03/2018)
+
+	Version 5		Year (2018)	User Interface: GTK (using gtkmm)
+	Repository:		gautier_system
+	First Commit:		c183e2b429b6d53805bc91dc7b94066eeae97891 (05/2018)
+	Final Commit:		b7588274ce3f10ef4cb8f2d7331c970e1677002c (03/2019)
+
+	Version 6		Year (2019)	User Interface: wxWidgets
+	Repository:		gautier_system
+	First Commit:		508592a8f06c8f531235d07ffb1f741e290f5474 (05/2019)
+	Final Commit:		2b8b868ac372074ad27b4e6b7d8f196b6dba3166 (05/2019)
+------------------------------
+Versions 3 - 6 were cultivated under the same git repository. That was convenient at the time but made the individual styles, designs, and approaches less distinct from a history standpoint.
+
+I will not change the gautier_system repository's history. Indeed, I may repurpose it in the future. In the meantime, versions 3 - 6 are copied to new repositories to preserve the original history. This also makes it convenient to pick up from where each one left off to investigate matters regarding FLTK, GTK, wxWidgets, and possibly Allegro. The new repositories for each UI version will not be changed but will serve as a near-term, reliable baseline for branch purposes.
+
+I have revised plans for the RSS Reader project and wanted to freeze these earlier versions before I went too far in a new direction. The frozen repositories for versions 3 - 6 are as follows:
+
+gautier_rss_reader3 -> based on gautier_system commit ada4686bf675...bd37aacec83bee54fcb4615a33d57419a2c589f3
+
+gautier_rss_reader4 -> based on gautier_system commit bfa59682d3b0...e90d617d7f78cce3185c574d608ba0bf5432e9d8
+
+gautier_rss_reader5 -> based on gautier_system commit c183e2b429b6...b7588274ce3f10ef4cb8f2d7331c970e1677002c
+
+gautier_rss_reader6 -> based on gautier_system commit 508592a8f06c...2b8b868ac372074ad27b4e6b7d8f196b6dba3166
+------------------------------*************************************
+Those versions are based on gautier_system using the following procedure (using the Allegro project as an example):
+
+git clone gautier_system/ gautier_system_local/
+cd gautier_system_local/
+git remote remove origin
+git gc --prune=now
+git checkout --orphan PROJECT_FOR_ARCHIVE bfa59682d3b0a7d8fc764d71be464f93a36229c0
+git commit -m "based on gautier_system repository commit ..."
+git rebase --strategy-option=theirs --onto PROJECT_FOR_ARCHIVE bfa59682d3b0a7d8fc764d71be464f93a36229c0 master
+git checkout master
+git branch --delete PROJECT_FOR_ARCHIVE
+git log #find the earliest commit (now set to current date/time)
+press end key
+copy the commit #
+press q to exit
+git rebase -i 1b2ad863101c7baf6b0022f60e9f676bc3080c28 (the earliest SHA-1 # from the 1st rebase)
+delete relevant lines in vi and then exit # erased commits following 12ead295...
+cp ../git_respository_note.txt .
+git add git_repository_note.txt
+git commit -a
+git push --set-upstream https://github.com/michaelgautier/gautier_rss_reader4 master
+------------------------------*************************************
+Gautier RSS version 4 based on commit bfa59682d3b0a7d8fc764d71be464f93a36229c0 in the gautier_system repository.
+
+Rather than do a persistent remote tracking branch under gautier_system, I decided to make each branch its own repository. That makes them easier to discover, clone, and work on independently.
+
+The version under gautier_system will no longer change. This version is now the canonical version for the projects descibed in this document. Commit history and file dates will reflect a period later than the project's origin. See details listed earlier in the document regarding the actual progression listed in the gautier_system repository.
+
+Finally, the fundamental reason for splitting this out into its own repository is no clean, merge friendly relationship exists between Gautier RSS versions featuring GUIs based on FLTK, Allegro, GTK, or wxWidgets.
+
+Likewise, code API for accessing RSS feeds in each project follows a similar methodology but differs in how the API is defined and invoked. A unified API may eventually be used but the primary goal is to track each GUI separately and refine the common code foundation in its own repository.
+
